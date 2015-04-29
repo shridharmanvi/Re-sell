@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{%  block content %}
+ <h3 class="text-center" style:'color=red'> My items </h3>
+
+<div class="container">
+<div class="row">
+{% for data in obj %}
+    {% if 'items' in data %}
+               {% if data['username']== username %}
+                 {% for item in data['items'] %}
+                
+                    <div class="row col-md-6 text-left">
+                    <img src="/static/images/{{ item['image'] }}" style="max-height:250px; max-width:200px"/> 
+                    <h4>{{ data['username'] }}</h4>
+                    <h5> {{ item['head'] }} </h5>
+                    <p> {{ item['description'] }}</p>
+                    <form action="/delete" method="GET">
+                        <input type="hidden" name="image_id" value="{{item['im_id']}}">
+                        <input type="submit" value="Delete"></input>
+                    </form>
+                    </div>
+            
+                 {% endfor  %}
+                {% endif %}
+        {% endif%}
+
+
+{% endfor  %}
+</div>
+</div>
+<div class="row">
+<h5 class="col-md-12 text-center"> <a href="/member">Click here to go back to market place</a></h5>
+<div>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html"%}
+
+
+{% block content %}
+<div class="row" style="font:black">
+<h3 class="text-center"><a href='/upload'>Add item to market</a></h3>
+<h4 class="text-center"><a href="/profile">My profile</a></h4>
+<h5 class="text-center"> <a href='/logout'>Logout</a></h5>
+
+
+<h4 class='text-center'>-----------------------------------------------------------</h4>
+</div>
+
+{% for data in obj %}
+    {% if 'items' in data %}
+        {% for item in data['items'] %}
+        <div class="row col-md-6 text-center">
+               
+           <img src="/static/images/{{ item['image'] }}" style="max-height:250px; max-width:200px"/>
+           <h4>{{data['username'] }}</h4>
+           <h5> {{item['head']}} <h5>
+           <p> {{item['description']}}</p>
+        
+        </div>
+        {% endfor %}
+    {% endif %}
+{% endfor %}
+
+
+{% endblock %}
+
